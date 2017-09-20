@@ -1,0 +1,26 @@
+version: '2'
+services:
+  wnginx:
+    image: nginx:1.12
+    container_name: wnginx
+    ports:
+      - 80:80
+    volumes:
+      - /lnmp/www:/usr/share/nginx/html
+      - /lnmp/conf:/etc/nginx/conf.d
+  wphp:
+    image: php:5.6-fpm
+    container_name: wphp
+    ports:
+      - 9000:9000
+    volumes:
+      - /lnmp/www:/usr/share/nginx/html
+  wmysql:
+    image: mysql:5.7
+    container_name: wmysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "123456"
+    ports:
+      - 3306:3306
+    volumes:
+      - /lnmp/www:/lnmp/www

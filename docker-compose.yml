@@ -1,0 +1,32 @@
+version: '2'
+services:
+# 定义的服务
+  web:
+    image: nginx:1.12
+    container_name: nginx
+    ports:
+      - 80:80
+    depends_on:
+      - php
+    volumes:
+      - ./www:/usr/share/nginx/html
+      - ./nginx/conf:/etc/nginx/conf.d
+  php:
+    image: php:5.6-fpm
+    container_name: php
+    ports:
+      - 9000:9000
+    volumes:
+      - ./www:/usr/share/nginx/html
+  db:
+    image: mysql:5.7
+    container_name: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "123456"
+    volumes:
+      - ./mysql:/var/lib/mysql
+  # composer:
+  #   image: composer:1.4.2
+  #   container_name: composer
