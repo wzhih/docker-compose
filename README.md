@@ -2,13 +2,13 @@
 **一个用于自用的，搭建php运行环境的docker-compose文件及目录结构**
   
 
-每个分支对应一种运行环境与目录结构，如master分支就是以以下软件组成
+每个分支对应一种运行环境与目录结构，如mariadb分支就是以以下软件组成
 
 *Nginx 1.12*
 
-*PHP 5.6-fpm*
+*PHP 7.1-fpm*
 
-*MySQL 5.7*
+*Mariadb 10.2*
 
 *composer  要不要就随便你了*
 
