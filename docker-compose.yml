@@ -3,11 +3,11 @@ version: '2'
 services:
 # 定义的服务
   web:
-    image: nginx:1.12
+    image: nginx:1.14
     container_name: nginx
     ports:
-      - 80:80
-      - 8080:8080
+      # - 80:80
+      - 8080:80
     depends_on:
       - php
     volumes:
@@ -18,7 +18,7 @@ services:
       context: ./php
       dockerfile: php-fpm
       args:
-        version: 7.1-fpm
+        version: 7.2-fpm
     container_name: php
     ports:
       - 9000:9000

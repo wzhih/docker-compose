@@ -1,4 +1,4 @@
-ARG version=7.1-fpm
+ARG version=7.2-fpm
 
 FROM php:${version}
 
