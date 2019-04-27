@@ -1,2 +1,0 @@
-#像下面这样写，不需要修改docker php容器里面，只需要编写映射文件夹里面的crontab文件，即可增加定时任务
-#* * * * * crontab /usr/share/nginx/html/crontab

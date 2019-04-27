@@ -1,36 +1,32 @@
 #create by winton wang
-version: '2'
+version: '3.7'
 services:
 # 定义的服务
   web:
-    image: nginx:1.14
+    image: nginx:1.16
     container_name: nginx
     ports:
-      # - 80:80
-      - 8080:80
+      - 80:80
+      - 8080:8080
     depends_on:
       - php
     volumes:
       - ./www:/usr/share/nginx/html
-      - ./nginx/conf:/etc/nginx/conf.d
+      - ./nginx:/etc/nginx
   php:
     build: 
       context: ./php
-      dockerfile: php-fpm
-      args:
-        version: 7.2-fpm
     container_name: php
     ports:
       - 9000:9000
     volumes:
       - ./www:/usr/share/nginx/html
   db:
-    image: mariadb:10.2
-    container_name: mariadb
+    image: mysql:8.0
+    container_name: mysql
     ports:
       - 3306:3306
-    # privileged: true
     environment:
       MYSQL_ROOT_PASSWORD: "123456"
     volumes:
-      - ./mariadb:/var/lib/mysql
+      - ./mysql:/var/lib/mysql
