@@ -1,2 +1,2 @@
-mysql/*
-mariadb/*
+mysql/data/*
+mariadb/data/*

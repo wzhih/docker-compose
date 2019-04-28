@@ -1,5 +1,5 @@
 #create by winton wang
-version: '3.7'
+version: '3.6'
 services:
 # 定义的服务
   web:
@@ -14,8 +14,9 @@ services:
       - ./www:/usr/share/nginx/html
       - ./nginx:/etc/nginx
   php:
-    build: 
-      context: ./php
+    # build: 
+    #   context: ./php
+    images: php:7.3-fpm
     container_name: php
     ports:
       - 9000:9000
@@ -29,4 +30,5 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: "123456"
     volumes:
-      - ./mysql:/var/lib/mysql
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/conf:/etc/mysql/conf.d
