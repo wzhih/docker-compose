@@ -10,7 +10,6 @@ RUN cp "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
 #安装extension
 RUN apt-get update && apt-get install -y \
-        zlib1g-dev \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libpng-dev \
@@ -32,11 +31,11 @@ RUN pecl install xdebug-2.7.2 \
     && echo "xdebug.remote_handler=dbgp" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 #安装composer
-RUN php -r "copy('https://install.phpcomposer.com/installer', 'composer-setup.php');" \
-    && php composer-setup.php \
-    && php -r "unlink('composer-setup.php');" \
-    && mv composer.phar /usr/local/bin/composer \
-    && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+# RUN php -r "copy('https://install.phpcomposer.com/installer', 'composer-setup.php');" \
+#     && php composer-setup.php \
+#     && php -r "unlink('composer-setup.php');" \
+#     && mv composer.phar /usr/local/bin/composer \
+#     && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
 
 #安装一些会用到的工具
 RUN apt-get install -y \
