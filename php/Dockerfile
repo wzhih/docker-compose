@@ -1,6 +1,6 @@
 FROM php:7.3-fpm
 
-MAINTAINER winton wang < 1309603684@qq.com >
+MAINTAINER winton wang <1309603684@qq.com>
 
 #换国内镜像源
 COPY sources.list /etc/apt/sources.list
@@ -10,10 +10,11 @@ RUN cp "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
 #安装extension
 RUN apt-get update && apt-get install -y \
+        zlib1g-dev \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
-        libmcrypt-dev \
         libpng-dev \
+    && docker-php-ext-install -j$(nproc) iconv \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install -j$(nproc) mysqli \
@@ -23,10 +24,8 @@ RUN apt-get update && apt-get install -y \
 #安装xdebug mcrypt
 #xdebug配置 phpstorm要配置项目路径映射，在File | Settings | Languages & Frameworks | PHP | Debug 和 Servers里面配置
 RUN pecl install xdebug-2.7.2 \
-    && pecl install mcrypt-1.0.2 \
-    && docker-php-ext-enable xdebug mcrypt \
+    && docker-php-ext-enable xdebug \
     && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-#     && echo "xdebug.remote_connect_back=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.remote_host=host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.remote_port=10000" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.idekey=phpstorm" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
