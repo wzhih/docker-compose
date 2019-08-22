@@ -1,6 +1,7 @@
 FROM php:7.3-fpm
 
-MAINTAINER winton wang <1309603684@qq.com>
+LABEL maintainer="winton wang"
+LABEL email="wiwang@foxmail.com"
 
 #换国内镜像源
 COPY sources.list /etc/apt/sources.list
