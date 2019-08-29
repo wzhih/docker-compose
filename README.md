@@ -45,4 +45,9 @@ use mysql;
 ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'root';
 ```
 
+或者，直接在配置文件里面加入以下内容，容器初始化的时候，就会使用老的加密方式了
+```
+default-authentication-plugin=mysql_native_password
+```
+
 *其实大部分的配置文件以及容器产生的数据，我都不想放到容器外面来，可是由于修改配置文件太麻烦了，所以，我把可能会经常修改的软件的配置文件如nginx的，"提取"出来。至于数据库数据，还是放在外面吧，万一哪一天容器出问题了。。。。。。*
