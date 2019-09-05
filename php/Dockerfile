@@ -6,8 +6,8 @@ LABEL email="wiwang@foxmail.com"
 #换国内镜像源
 COPY sources.list /etc/apt/sources.list
 
-# 使用默认配置文件,开发是php.ini-development，生成环境是php.ini-production
-RUN cp "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+# 复制本地配置文件
+COPY php.ini /usr/local/etc/php/php.ini
 
 #安装extension
 RUN apt-get update && apt-get install -y \

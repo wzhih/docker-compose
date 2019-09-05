@@ -7,15 +7,14 @@ services:
     container_name: nginx
     ports:
       - 80:80
-      - 8080:8080
     depends_on:
       - php
     volumes:
       - ./www:/usr/share/nginx/html
       - ./nginx:/etc/nginx
   php:
-    # build: 
-    #   context: ./php
+    build: 
+      context: ./php
     image: php:7.3-fpm
     container_name: php
     ports:
@@ -32,3 +31,12 @@ services:
     volumes:
       - ./mysql/data:/var/lib/mysql
       - ./mysql/conf:/etc/mysql/conf.d
+  redis:
+    image: redis:5.0
+    container_name: redis-server
+    ports:
+      - 6379:6379
+    command: ['redis-server', '/usr/local/etc/redis/redis.conf']
+    volumes:
+      - ./redis/conf:/usr/local/etc/redis
+      - ./redis/data:/data
