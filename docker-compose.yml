@@ -10,7 +10,7 @@ services:
     depends_on:
       - php
     volumes:
-      - ./www:/usr/share/nginx/html
+      - ./www:/www
       - ./nginx:/etc/nginx
   php:
     build: 
@@ -20,7 +20,7 @@ services:
     ports:
       - 9000:9000
     volumes:
-      - ./www:/usr/share/nginx/html
+      - ./www:/www
   db:
     image: mysql:8.0
     container_name: mysql
