@@ -4,10 +4,10 @@
 ## 容器如何访问主机
 
 - window/mac下，使用docker for window/mac，可以在容器中直接使用`host.docker.internal`，通过这个host即可访问主机
-- linux下，暂时还没有`host.docker.internal`，但是通过`docker-compose.yml`创建的容器之间，可以通过容器名称进行连接。
-就像此项目中，nginx的默认配置文件`nginx\conf.d\server.conf`中就是通过`php:9000`来访问php容器的。同理，php代码在php容器解析运行时，可以通过`mysql`来访问mysql容器。
+- linux下，暂时还没有`host.docker.internal`，但是通过`docker-compose.yml`创建的容器之间，可以通过`服务名`进行连接。
+就像此项目中，nginx的默认配置文件`nginx\conf.d\server.conf`中就是通过`php:9000`来访问php容器的。同理，php代码在php容器解析运行时，可以通过`db`来访问mysql容器。
 
-**容器名称可自定义，由docker-composer.yml文件中的`container_name`定义**
+**`服务名`可自定义，就是docker-composer.yml文件中的`web`、`php`、`db`、`redis`等**
 
 ### 每个分支对应一种运行环境与目录结构，如master分支就是以以下软件组成
 
