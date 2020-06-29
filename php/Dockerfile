@@ -4,13 +4,14 @@ LABEL maintainer="winton wang"
 LABEL email="wiwang@foxmail.com"
 
 #换国内镜像源
-COPY sources.list /etc/apt/sources.list
+#COPY sources.list /etc/apt/sources.list
 
 # 复制本地配置文件
 COPY php.ini /usr/local/etc/php/php.ini
 
 #安装extension
-RUN apt-get update && apt-get install -y \
+RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
+    && apt-get update && apt-get install -y \
         #安装gd扩展依赖
         libfreetype6-dev \
         libjpeg62-turbo-dev \
