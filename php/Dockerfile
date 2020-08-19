@@ -21,6 +21,8 @@ RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
         libicu-dev \
         #安装imagick扩展依赖
         imagemagick \
+        #安装zip扩展依赖
+        libzip-dev \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install -j$(nproc) intl \
@@ -28,6 +30,7 @@ RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
     && docker-php-ext-install -j$(nproc) mysqli \
     && docker-php-ext-install -j$(nproc) pdo_mysql \
     && docker-php-ext-install -j$(nproc) pcntl \
+    && docker-php-ext-install -j$(nproc) zip \
     && docker-php-ext-install -j$(nproc) bcmath
 
 #安装xdebug redis
