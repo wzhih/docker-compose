@@ -4,3 +4,9 @@ skip-name-resolve
 sql-mode="NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
 
 default-authentication-plugin=mysql_native_password
+
+# 错误日志
+log-error="/mysql/log/error.log"
+
+general_log=ON    #开启日志
+general_log_file="/mysql/log/sql.log"    #设置日志路径

@@ -24,6 +24,11 @@ services:
   db:
     image: mysql:8.0
     container_name: mysql
+    command: >
+          bash -c "
+          chmod 644 /etc/mysql/conf.d/*.cnf
+          && /entrypoint.sh mysqld
+          "
     ports:
       - 3306:3306
     environment:
@@ -31,6 +36,7 @@ services:
     volumes:
       - ./mysql/data:/var/lib/mysql
       - ./mysql/conf:/etc/mysql/conf.d
+      - ./mysql/log:/mysql/log
   redis:
     image: redis:5.0
     container_name: redis-server
