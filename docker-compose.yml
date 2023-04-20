@@ -5,6 +5,7 @@ services:
   web:
     image: nginx:1.16
     container_name: nginx
+    restart: always
     ports:
       - 80:80
     depends_on:
@@ -17,6 +18,7 @@ services:
       context: ./php
     image: php-fpm:7.3
     container_name: php
+    restart: always
     ports:
       - 9000:9000
     volumes:
@@ -24,6 +26,7 @@ services:
   db:
     image: mysql:8.0
     container_name: mysql
+    restart: always
     command: >
           bash -c "
           chmod 644 /etc/mysql/conf.d/*.cnf
@@ -40,6 +43,7 @@ services:
   redis:
     image: redis:5.0
     container_name: redis-server
+    restart: always
     ports:
       - 6379:6379
     command: ['redis-server', '/usr/local/etc/redis/redis.conf']
