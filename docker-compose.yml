@@ -50,3 +50,17 @@ services:
     volumes:
       - ./redis/conf:/usr/local/etc/redis
       - ./redis/data:/data
+  # swoole:
+  #   build: 
+  #     context: ./swoole
+  #   image: php-swoole:7.4-4.5.11
+  #   container_name: swoole
+  #   restart: always
+  #   ports:
+  #     - 9501:9501
+  #   volumes:
+  #     - ./www:/www
+  #   #覆盖镜像最后的启动命令 使用：php -e 启动会慢很多但是可以yasd调试
+  #   command: php -e /www/hyperf/bin/hyperf.php start
+  #   environment:
+  #     - PHP_IDE_CONFIG=serverName=yasd
