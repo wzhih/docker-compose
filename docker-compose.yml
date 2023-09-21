@@ -3,7 +3,7 @@ version: '3.6'
 services:
 # 定义的服务
   web:
-    image: nginx:1.16
+    image: nginx:1.25
     container_name: nginx
     restart: always
     ports:
@@ -41,7 +41,7 @@ services:
       - ./mysql/conf:/etc/mysql/conf.d
       - ./mysql/log:/mysql/log
   redis:
-    image: redis:5.0
+    image: redis:7.2
     container_name: redis-server
     restart: always
     ports:
