@@ -21,7 +21,7 @@ RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
     && echo "zend_extension=yasd" >> /usr/local/etc/php/conf.d/docker-php-ext-yasd.ini \
     && echo "yasd.debug_mode=remote" >> /usr/local/etc/php/conf.d/docker-php-ext-yasd.ini \
     && echo "yasd.remote_host=host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-yasd.ini \
-    && echo "yasd.remote_port=9500" >> /usr/local/etc/php/conf.d/docker-php-ext-yasd.ini \
+    && echo "yasd.remote_port=9004" >> /usr/local/etc/php/conf.d/docker-php-ext-yasd.ini \
     && echo "swoole.use_shortname = off" >> /usr/local/etc/php/conf.d/docker-php-ext-swoole.ini \
     #安装扩展安装脚本，然后用工具安装composer
     && curl -sSLf \
