@@ -1,0 +1,33 @@
+FROM phpswoole/swoole:5.0-php8.2
+
+# 复制本地配置文件
+COPY php.ini /usr/local/etc/php/php.ini
+
+RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
+    && sed -i 's|security.debian.org/debian-security|mirrors.ustc.edu.cn/debian-security|g' /etc/apt/sources.list \
+    && apt-get update \
+    && apt-get install -y \
+        #安装gd扩展依赖
+        libpng-dev \
+        less vim \
+    # 用php官方容器里的工具装普通扩展
+    && docker-php-ext-install gd bcmath pcntl \
+    && composer selfupdate \
+    && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/ \
+    && echo "swoole.use_shortname=off" >> /usr/local/etc/php/conf.d/docker-php-ext-swoole.ini
+    
+#安装扩展安装脚本，然后用工具安装比较麻烦的扩展
+RUN curl -sSLf \
+        -o /usr/local/bin/install-php-extensions \
+        https://gitee.com/sgyh/docker-php-extension-installer/raw/2.1.43/install-php-extensions \
+    && chmod +x /usr/local/bin/install-php-extensions \
+    && install-php-extensions xdebug \
+    && echo "xdebug.mode=develop,debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.client_host=host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.client_port=9004" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+WORKDIR /workspace
+
+EXPOSE 9501
+
+CMD []
